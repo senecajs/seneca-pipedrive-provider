@@ -7,10 +7,10 @@
     "noEmitOnError": true,
     "outDir": "dist",
     "resolveJsonModule": true,
-    "rootDir": "src",
     "strict": true,
     "target": "ES2019",
     "types": ["node", "jest"]
   },
+  "include": ["src/**/*.ts", "test/**/*.ts"],
   "exclude": ["dist", "node_modules"]
 }
