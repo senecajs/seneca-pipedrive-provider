@@ -4,15 +4,9 @@ const defaultClient = new pipedrive.ApiClient();
 
 // Configure authorization by setting API key
 // PIPEDRIVE_API_KEY is an environment variable that holds the real API key
-defaultClient.authentications.api_key.apiKey =
-  "a4cad8d995eb742a14b27d8faac6287cdd9e3706" as string;
+defaultClient.authentications.api_key.apiKey = process.env.PIPEDRIVE_KEY;
 
-export async function getDeals(): Promise<{
-  ok: boolean;
-  name: string;
-  deals?: any[];
-  length: number;
-}> {
+async function getDeals() {
   try {
     console.log("Sending request...");
 
@@ -35,7 +29,7 @@ export async function getDeals(): Promise<{
         length: 0,
       };
     }
-  } catch (err: any) {
+  } catch (err) {
     const errorToLog = err.context?.body || err;
     console.error("Getting deals failed", errorToLog);
 

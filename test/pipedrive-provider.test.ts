@@ -1,5 +1,5 @@
 // pipedrive-provider.test.ts
-import { getDeals } from "../src/pipedrive-provider"; // Adjust the import according to your actual file structure
+import { getDeals } from "./pipedrive"; // Adjust the import according to your actual file structure
 import PipedriveProviderDoc from "../src/PipedriveProvider-doc";
 
 describe("pipedrive-provider", () => {
