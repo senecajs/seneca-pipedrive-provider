@@ -6,8 +6,7 @@ const Seneca = require("seneca");
 const SenecaMsgTest = require("seneca-msg-test");
 const { Maintain } = require("@seneca/maintain");
 
-import WebflowProvider from "../src/pipedrive-provider";
-import WebflowProviderDoc from "../src/WebflowProvider-doc";
+import WebflowProvider from "../src/webflow-provider";
 
 const BasicMessages = require("./basic.messages.js");
 
@@ -20,7 +19,6 @@ if (Fs.existsSync(__dirname + "/local-config.js")) {
 describe("webflow-provider", () => {
   test("happy", async () => {
     expect(WebflowProvider).toBeDefined();
-    expect(WebflowProviderDoc).toBeDefined();
 
     const seneca = await makeSeneca();
 

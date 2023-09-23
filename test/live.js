@@ -1,4 +1,4 @@
-const Seneca = require("seneca");
+const Seneca = require("seneca")
 
 Seneca({ legacy: false })
   .test()
@@ -22,10 +22,11 @@ Seneca({ legacy: false })
   })
   .use("../")
   .ready(async function () {
-    const seneca = this;
+    const seneca = this
 
-    console.log(await seneca.post("sys:provider,provider:webflow,get:info"));
+    console.log(await seneca.post("sys:provider,provider:webflow,get:info"))
 
-    const list = await seneca.entity("provider/webflow/site").list$();
-    console.log(list.slice(0, 3));
-  });
+    const list = await seneca.entity("provider/webflow/site").list$()
+    console.log(list.slice(0, 3))
+  })
+const Seneca = require("seneca")

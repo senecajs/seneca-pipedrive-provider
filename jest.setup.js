@@ -1,5 +1,3 @@
-const config = {
-  verbose: true,
-};
+const config = {};
 
 module.exports = config;
