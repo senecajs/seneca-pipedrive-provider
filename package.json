@@ -1,15 +1,15 @@
 {
-  "name": "@seneca/webflow-provider",
+  "name": "@seneca/pipedrive-provider",
   "version": "0.1.2",
-  "main": "dist/webflow-provider.js",
+  "main": "dist/pipedrive-provider.js",
   "type": "commonjs",
-  "types": "dist/webflow-provider.d.ts",
-  "description": "Seneca entity provider for the Webflow CMS API.",
-  "homepage": "https://github.com/senecajs/seneca-webflow-provider",
+  "types": "dist/pipedrive-provider.d.ts",
+  "description": "Seneca entity provider for the Pipedrive CMS API.",
+  "homepage": "https://github.com/senecajs/seneca-pipedrive-provider",
   "keywords": [
     "seneca",
-    "webflow",
-    "webflow-provider",
+    "pipedrive",
+    "pipedrive-provider",
     "cms"
   ],
   "author": "Richard Rodger - richardrodger.com",
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/senecajs/seneca-webflow-provider.git"
+    "url": "git://github.com/senecajs/seneca-pipedrive-provider.git"
   },
   "scripts": {
     "test": "jest --coverage",
@@ -48,7 +48,7 @@
     "@seneca/maintain": "^0.0.27",
     "dotenv": "^16.3.1",
     "pipedrive": "^21.2.0",
-    "webflow-api": "^1.2.2"
+    "pipedrive-api": "^1.2.2"
   },
   "peerDependencies": {
     "@seneca/env": ">=0.2",

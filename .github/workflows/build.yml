@@ -13,7 +13,7 @@ jobs:
   build:
     environment: test
     env:
-      WEBFLOW_APIKEY: ${{secrets.WEBFLOW_APIKEY}}
+      WEBFLOW_APIKEY: ${{secrets.PIPEDRIVE_APIKEY}}
 
     timeout-minutes: 6
 

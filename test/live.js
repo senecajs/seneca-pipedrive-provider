@@ -8,14 +8,14 @@ Seneca({ legacy: false })
     // debug: true,
     file: [__dirname + "/local-env.js;?"],
     var: {
-      $WEBFLOW_ACCESSTOKEN: String,
+      $PIPEDRIVE_ACCESSTOKEN: String,
     },
   })
   .use("provider", {
     provider: {
-      webflow: {
+      pipedrive: {
         keys: {
-          accesstoken: { value: "$WEBFLOW_ACCESSTOKEN" },
+          accesstoken: { value: "$PIPEDRIVE_ACCESSTOKEN" },
         },
       },
     },
@@ -24,9 +24,9 @@ Seneca({ legacy: false })
   .ready(async function () {
     const seneca = this
 
-    console.log(await seneca.post("sys:provider,provider:webflow,get:info"))
+    console.log(await seneca.post("sys:provider,provider:pipedrive,get:info"))
 
-    const list = await seneca.entity("provider/webflow/site").list$()
+    const list = await seneca.entity("provider/pipedrive/site").list$()
     console.log(list.slice(0, 3))
   })
 const Seneca = require("seneca")

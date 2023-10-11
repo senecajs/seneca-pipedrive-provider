@@ -1,96 +1,97 @@
 /* Copyright © 2022 Seneca Project Contributors, MIT License. */
 
-import * as Fs from "fs";
+import * as Fs from "fs"
 
-const Seneca = require("seneca");
-const SenecaMsgTest = require("seneca-msg-test");
-const { Maintain } = require("@seneca/maintain");
+const Seneca = require("seneca")
+const SenecaMsgTest = require("seneca-msg-test")
+const { Maintain } = require("@seneca/maintain")
 
-import WebflowProvider from "../src/webflow-provider";
+import WebflowProvider from "../src/webflow-provider"
+import PipedriveProvider from "../src/webflow-provider"
 
-const BasicMessages = require("./basic.messages.js");
+const BasicMessages = require("./basic.messages.js")
 
 // Only run some tests locally (not on Github Actions).
-let Config: undefined = undefined;
+let Config: undefined = undefined
 if (Fs.existsSync(__dirname + "/local-config.js")) {
-  Config = require("./local-config");
+  Config = require("./local-config")
 }
 
-describe("webflow-provider", () => {
+describe("pipedrive-provider", () => {
   test("happy", async () => {
-    expect(WebflowProvider).toBeDefined();
+    expect(PipedriveProvider).toBeDefined()
 
-    const seneca = await makeSeneca();
+    const seneca = await makeSeneca()
 
     expect(
       await seneca.post("sys:provider,provider:webflow,get:info")
     ).toMatchObject({
       ok: true,
       name: "webflow",
-    });
-  });
+    })
+  })
 
   test("messages", async () => {
-    const seneca = await makeSeneca();
-    await SenecaMsgTest(seneca, BasicMessages)();
-  });
+    const seneca = await makeSeneca()
+    await SenecaMsgTest(seneca, BasicMessages)()
+  })
 
   test("site-basic", async () => {
-    if (!Config) return;
-    const seneca = await makeSeneca();
+    if (!Config) return
+    const seneca = await makeSeneca()
 
     // does this:   const sites = await webflow.sites();
-    const list = await seneca.entity("provider/webflow/site").list$();
-    expect(list.length > 0).toBeTruthy();
+    const list = await seneca.entity("provider/webflow/site").list$()
+    expect(list.length > 0).toBeTruthy()
 
     const site0 = await seneca
       .entity("provider/webflow/site")
-      .load$(Config.site0.id);
-    expect(site0.name).toContain(Config.site0.name);
-  });
+      .load$(Config.site0.id)
+    expect(site0.name).toContain(Config.site0.name)
+  })
 
   test("collection-basic", async () => {
-    if (!Config) return;
-    const seneca = await makeSeneca();
+    if (!Config) return
+    const seneca = await makeSeneca()
 
     const list = await seneca
       .entity("provider/webflow/collection")
-      .list$(Config.site0.id);
-    expect(list.length > 0).toBeTruthy();
+      .list$(Config.site0.id)
+    expect(list.length > 0).toBeTruthy()
 
     const collection0 = await seneca
       .entity("provider/webflow/collection")
       .load$({
         siteId: Config.site0.id,
         collectionId: Config.site0.collections.collection0.id,
-      });
+      })
     expect(collection0.name).toContain(
       Config.site0.collections.collection0.name
-    );
-  });
+    )
+  })
 
   test("item-basic", async () => {
-    if (!Config) return;
-    const seneca = await makeSeneca();
+    if (!Config) return
+    const seneca = await makeSeneca()
 
     const list = await seneca
       .entity("provider/webflow/item")
-      .list$(Config.site0.collections.collection0.id);
-    expect(list.length > 0).toBeTruthy();
+      .list$(Config.site0.collections.collection0.id)
+    expect(list.length > 0).toBeTruthy()
 
     const item0 = await seneca.entity("provider/webflow/item").load$({
       collectionId: Config.site0.collections.collection0.id,
       itemId: Config.site0.collections.collection0.items.item0.id,
-    });
+    })
     expect(item0.name).toContain(
       Config.site0.collections.collection0.items.item0.name
-    );
-  });
+    )
+  })
 
   test("maintain", async () => {
-    await Maintain();
-  });
-});
+    await Maintain()
+  })
+})
 
 async function makeSeneca() {
   const seneca = Seneca({ legacy: false })
@@ -113,7 +114,7 @@ async function makeSeneca() {
         },
       },
     })
-    .use(WebflowProvider);
+    .use(WebflowProvider)
 
-  return seneca.ready();
+  return seneca.ready()
 }
