@@ -1,3 +1,3 @@
 module.exports = {
-  WEBFLOW_TOKEN: '<TOKEN>',
+  PIPEDRIVE_TOKEN: "<TOKEN>",
 }
